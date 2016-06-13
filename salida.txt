@@ -1,2 +1,0 @@
-ErrorIdentificador CaracterEspecial Identificador ErrorIdentificador CaracterEspecial 
-
