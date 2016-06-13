@@ -1,0 +1,55 @@
+%{
+#include <stdio.h>
+FILE *archSal;
+FILE *archEnt;
+
+
+%}
+%option noyywrap
+%option yylineno 
+
+
+omitir " "|\t
+entero [0-9]|"-"[0-9]|"+"[0-9]   
+car ","|";"|":"|"("|")"|"["|"]"|"{"|"}"|"+"|"-"|"<"|">"|"="|"!"|"&"|"$"  
+float [0-9]*"."[0-9]+ 
+booleano "True"|"False"|"true"|"false"
+reserv "if"|"else"|"return"|"bool"|"string"|"int"|"float"|"char"|"then"|"while"|"void"|"do"|"input"|"output"
+iden [a-z]([a-z]|[0-9])*   
+oper "<="|">="|"=="|"!="|"&&"|"||"
+char "'".{1}"'"
+cadena \"[^\n"]+\"
+coms "//".*?    
+comc "/*"[^"*/"]* 
+%%
+
+{omitir}*       ;
+{entero}		fprintf(archSal,"Integer ");
+{float}			fprintf(archSal,"Float ");
+{booleano}		fprintf(archSal,"bool ");
+{reserv} fprintf(archSal,"Palabrareservada ");
+
+{car}  		{fprintf(archSal,"CaracterEspecial ");}
+ 		
+{oper}			fprintf(archSal,"OperandoCompuesto ");
+
+{iden} 		fprintf(archSal,"Identificador ");
+{char}			fprintf(archSal,"char ");
+{cadena}			fprintf(archSal,"string ");
+\n				fprintf(archSal,"\n"); 
+
+{coms}			fprintf(archSal,"Comentariolinea ");
+
+{comc}	 fprintf(archSal,"Comentariovariaslineas");
+.		fprintf(archSal,"Error");
+
+%%
+
+
+void main()
+{
+    yyin=fopen("emtrada.txt","r");//read
+    archSal=fopen("salida.txt","w");//write
+    yylex();
+    fclose(archSal);
+ }
