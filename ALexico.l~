@@ -80,5 +80,6 @@ void main()
     archSal=fopen("ArchivoSalida.txt","w");//write
    /* Ejecuta el 'lexer' y después temina */
     yylex();
+    yylineno;
     fclose(archSal);
 }
