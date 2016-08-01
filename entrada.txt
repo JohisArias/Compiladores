@@ -1,0 +1,19 @@
+#include<dsad.h>
+
+int a=12;
+float s = 5.7; 
+bool q;
+return 3+9;
+
+string xuta= "mundo";
+
+char y='w';
+
+
+  #include<stdlib.h>
+  #include<stdio.h>
+  int count = 0;
+
+  
+
+
