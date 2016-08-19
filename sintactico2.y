@@ -24,13 +24,19 @@ GR_02
    	FILE *archSal1;//archivo que imprime la tabla se símbolos
 %}
 
+union {
+	char *dato;
+
+}
+
+
 	//declaraciones de símbolos de gramática terminales
 	//los no t erminales irían con %type
 %start programa //indica el símbolo de inicio de la gramática
 %token INCLUDE
 %token IGUAL
 %token LIBRERIA
-%token TIPODEDATO
+%token <dato> TIPODEDATO
 %token IF
 %token FOR
 %token ELSE
